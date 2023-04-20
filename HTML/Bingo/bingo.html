@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bingo.css">
+    <link rel="icon" href="bingo_icon.png">
+    <title>Taxi Bingo Online</title> 
+  </head>
+  <body>
+    <header>
+      <h1>Taxi Bingo Online</h1>
+    </header>
+    <div>
+      <button id="button" onclick="criar_tabela()">Gerar números</button>
+    </div>
+    <div>
+      <table id="tabela" class="center-table"> 
+        <thead>
+          <th>B</th>
+          <th>I</th>
+          <th>N</th>
+          <th>G</th>
+          <th>O</th>
+        </thead>
+      </table>
+      
+
+    </div>
+
+    <script>
+      var bingo = [];
+
+      function sorteia(min, max) {
+
+        var numSorteado = null;
+        
+        while(bingo.includes(numSorteado) || numSorteado == null){
+          numSorteado = Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        bingo.push(numSorteado);
+
+        return numSorteado;                  
+      }
+
+      function criar_tabela(id){
+        var tabela = document.getElementById("tabela");
+        var matriz = [[sorteia(1,15),sorteia(16,30),sorteia(31,45),sorteia(46,60),sorteia(61,75)],
+                    [sorteia(1,15),sorteia(16,30),sorteia(31,45),sorteia(46,60),sorteia(61,75)],
+                    [sorteia(1,15),sorteia(16,30),"FREE",sorteia(46,60),sorteia(61,75)],
+                    [sorteia(1,15),sorteia(16,30),sorteia(31,45),sorteia(46,60),sorteia(61,75)],
+                    [sorteia(1,15),sorteia(16,30),sorteia(31,45),sorteia(46,60),sorteia(61,75),]];
+
+        var itens_tabela = "";              
+        for(let lin=0; lin<5; lin++){
+          itens_tabela += "<tr>";
+        
+          for(let col=0; col<5; col++){
+            itens_tabela += "<td class='num_bingo'>" + matriz[lin][col] + "</td>";
+          }
+        
+          itens_tabela += "</tr>";
+        }
+      
+        tabela.innerHTML += itens_tabela;
+      
+        var botao = document.getElementById("button");
+        botao.classList.add("invisivel")
+      } 
+     
+      var tabela = document.getElementById("tabela");
+
+      tabela.addEventListener("click", function(event){
+        if (event.target.className == "num_bingo") {
+          event.target.classList.add("marcado");
+        }
+      });
+
+      tabela.addEventListener("dblclick", function(event){
+        event.target.classList.remove("marcado");
+      });
+
+    </script>    
+  </body>
+</html>
