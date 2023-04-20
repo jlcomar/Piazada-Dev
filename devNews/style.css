@@ -1,0 +1,197 @@
+:root {
+    --font0: 'Source Code Pro', monospace;
+    --font1: 'Montserrat', sans-serif;
+}
+
+/*cabeçalho*/
+
+header{
+    padding: 20px 0 0 0;
+    background: azure  
+}
+
+div{
+    margin: 0 50px 10px 0;
+    padding: 10px;
+}
+
+h1, h2{
+    display: inline-block;
+}
+
+.titulo{
+    vertical-align: top;
+    position: relative;
+    top: 30px;
+    font-size: 3em;
+    margin: 0 20px;
+    font-family: var(--font0);
+    text-shadow: 2px 2px 2px gray;
+}
+
+.logo_img {
+    height: 100px;
+    margin: 0 20px; 
+}
+nav{
+    background: #0074C7;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+nav li {
+    display: inline; 
+    margin: 0px 5%;     
+    
+}
+
+nav a {
+    font-size: 2em;
+    font-family: var(--font0);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: azure;
+    text-decoration: underline;
+}
+
+/*main*/
+
+main{
+    padding: 3em 0;
+}
+.titulo-principal {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    clear: left;
+    background-color: lightcoral;
+    padding: 10px;
+    font-family: var(--font1);
+    text-shadow: 2px 2px 2px gray;
+    
+}
+.artigo{
+    width: 80%;
+    margin: 0 auto;
+    border: solid red;
+}
+.ruby {
+    width: 60px;
+    float: inline-start;
+    margin: 0 20px 0 0
+}
+
+.artigo p {
+    padding: 10px 30px;
+    font-size: 25px;
+    line-height: 1.5em;
+}
+
+.subtitulo {
+    font-size: 2em;
+    padding: 10px;
+    font-weight: bold;
+    padding-left: 2em;
+    font-family: var(--font1);
+    text-shadow: 1px 1px 1px gray;
+}
+
+.item:before {
+    color: red;
+    text-shadow: 1px 1px 1px rgb(133, 13, 13);
+    content: "◻"
+}
+
+.item {
+    text-indent: 1em;
+}
+
+p strong {
+    font-weight: 600;
+    font-style: italic;
+    text-shadow: 0.5px 0.5px 0.5px gray;
+}
+
+p em {
+    color: rgb(238, 66, 66);
+    font-style: italic;
+    text-shadow: 0.5px 0.5px 0.5px gray;
+}
+
+.rails {
+    width: 60px;
+    float: inline-start;
+    margin: 0 20px 0 0;
+    vertical-align: middle;
+}
+
+.link {
+    color: rgb(186, 17, 17)
+}
+
+aside {
+    background-color: lightgray;
+    border-top: solid red;
+}
+
+aside p {
+    font-style: italic;
+    text-indent: 1em;
+    text-shadow: 0.5px 0.5px 0.5px gray;
+    
+}
+/*footer*/
+
+footer {
+    padding: 40px 0;
+    background: lightgray;
+    text-align: center;
+} 
+
+.footer_img {    
+    height: 75px;
+    margin-right: 50px;
+    text-align: center;
+}
+
+.copyright {
+    color: black;
+    font-size: 15px;
+    margin: 20px 50px 0 0 ;
+}
+
+@media screen and (max-width: 530px){
+
+    header div {
+        width: 100%;
+        padding: 0px;
+        margin: 0 50px 0 0;
+    }
+    nav ul {
+        text-align: center;
+    }
+    .logo_img {
+        margin: 0px 0px 0px 10px    
+    }
+    .subtitulo{
+        text-align:center;
+        padding-left: 0.25em;
+    }
+    img.rails{
+        width: 80px;
+    }
+    .titulo-rails{
+        font-size: 2em;
+    }
+    .footer_img{
+        text-align: center;
+        margin: 0 0 0 0;
+    }
+    .copyright{
+        margin: 0 0 0 0;
+    }
+}
