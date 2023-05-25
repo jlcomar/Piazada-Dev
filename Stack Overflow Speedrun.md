@@ -4,7 +4,9 @@
 
 - selecione java
 
-- public void
+- public void main() {
+  main()
+}
 
 - ?????
 
