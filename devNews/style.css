@@ -81,7 +81,7 @@ main{
 }
 .ruby {
     width: 60px;
-    float: inline-start;
+    float: inline-center;
     margin: 0 20px 0 0
 }
 
@@ -124,7 +124,7 @@ p em {
 
 .rails {
     width: 60px;
-    float: inline-start;
+    float: inline-center
     margin: 0 20px 0 0;
     vertical-align: middle;
 }
