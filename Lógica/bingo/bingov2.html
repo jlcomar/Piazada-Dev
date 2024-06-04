@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bingo.css">
+    <link rel="icon" href="bingo_icon.png">
+    <title>Taxi Bingo Online</title>
+  </head>
+  <body>
+    <header>
+      <h1>Taxi Bingo Online</h1>
+    </header>
+    <div>
+      <button id="button" onclick="gerarTabelas()">Gerar números</button>
+      <fieldset id="quantidade-tabela">
+        <legend>Quantas tabelas devem ser impressas</legend>
+        <select id="selec_tabela">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </fieldset>
+    </div>
+    <div id="tabelasContainer" class="container-tabela">
+    </div>
+
+    <script>
+      function generateUniqueNumbers(min, max, count) {
+        const numbers = new Set();
+        while (numbers.size < count) {
+          const num = Math.floor(Math.random() * (max - min + 1)) + min;
+          numbers.add(num);
+        }
+        return Array.from(numbers);
+      }
+
+      function createMatrix() {
+        const matrix = [];
+        for (let i = 0; i < 5; i++) {
+          const row = [
+            generateUniqueNumbers(1, 15, 5)[i],
+            generateUniqueNumbers(16, 30, 5)[i],
+            generateUniqueNumbers(31, 45, 5)[i],
+            generateUniqueNumbers(46, 60, 5)[i],
+            generateUniqueNumbers(61, 75, 5)[i]
+          ];
+          matrix.push(row);
+        }
+        matrix[2][2] = 'FREE';
+        return matrix;
+      }
+
+      function criar_tabela(matriz) {
+        const tabela = document.createElement("table");
+        tabela.className = "center-table";
+        for (let i = 0; i < 5; i++) {
+          const row = tabela.insertRow();
+          for (let j = 0; j < 5; j++) {
+            const cell = row.insertCell();
+            cell.innerHTML = matriz[i][j];
+            cell.classList.add("num_bingo");
+          }
+        }
+        const container = document.createElement("div");
+        container.className = "tabela-container";
+        container.appendChild(tabela);
+        return container;
+      }
+
+      function gerarTabelas() {
+        const numTabelas = parseInt(document.getElementById("selec_tabela").value);
+        const tabelasContainer = document.getElementById("tabelasContainer");
+        tabelasContainer.innerHTML = ""; // Limpa o conteúdo anterior
+        for (let i = 0; i < numTabelas; i++) {
+          const matriz = createMatrix();
+          const novaTabela = criar_tabela(matriz);
+          tabelasContainer.appendChild(novaTabela);
+        }
+        document.getElementById("button").disabled = true; // Desabilita o botão após gerar as tabelas
+        document.getElementById("selec_tabela").disabled = true; // Desabilita o select após gerar as tabelas
+      }
+
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("num_bingo")) {
+          event.target.classList.toggle("marcado");
+        }
+      });
+
+      document.addEventListener("dblclick", function (event) {
+        if (event.target.classList.contains("num_bingo") && event.target.classList.contains("marcado")) {
+          event.target.classList.remove("marcado");
+        }
+      });
+    </script>
+  </body>
+</html>

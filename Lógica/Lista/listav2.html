@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista</title>    
+    </head>
+    <body>
+        <input>
+        <button type="button" onclick="exibirItens()">Coloque seu item na lista</button>
+        <ul id="itens">
+        </ul>
+        <script>
+            var input = document.querySelector("input");
+            var lista = document.getElementById("itens");
+            var array_itens = [];
+
+            function exibirItens(){
+                array_itens.push(input.value);
+                
+                var adicionar_itens = "";
+                for(contador = 0; contador < array_itens.length; contador++){
+                    adicionar_itens += "<li>" + array_itens[contador] + "</li>";
+                }
+
+                lista.innerHTML = adicionar_itens;
+                input.value = "";
+                input.focus();
+            }
+            
+            
+        </script>
+    </body>
+</html>
