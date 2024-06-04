@@ -104,7 +104,7 @@ main{
     color: red;
     text-shadow: 1px 1px 1px rgb(133, 13, 13);
     content: "◻"
-}
+} 
 
 .item {
     text-indent: 1em;
@@ -124,7 +124,7 @@ p em {
 
 .rails {
     width: 60px;
-    float: inline-center
+    float: inline-center;
     margin: 0 20px 0 0;
     vertical-align: middle;
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="bingo.css">
+  <link rel="icon" href="bingo_icon.png">
+  <title>Taxi Bingo Online</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Taxi Bingo Online</h1>
+  </header>
+  <div>
+    <button id="button" onclick="gerarTabelas()">Gerar números</button>
+    <fieldset id="quantidade-tabela">
+      <legend>Quantas tabelas devem ser impressas</legend>
+      <select id="selec_tabela">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </fieldset>
+  </div>
+  <div id="tabelasContainer">
+  </div>
+
+  <script>
+    var bingo = [];
+
+    function sorteia(min, max) {
+      var numSorteado = null;
+      while (bingo.includes(numSorteado) || numSorteado === null) {
+        numSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      bingo.push(numSorteado);
+      return numSorteado;
+    }
+
+    function criar_tabela(matriz) {
+      var tabela = document.createElement("table");
+      tabela.className = "center-table";
+      for (let i = 0; i < 5; i++) {
+        var row = tabela.insertRow();
+        for (let j = 0; j < 5; j++) {
+          var cell = row.insertCell();
+          cell.innerHTML = matriz[i][j];
+          cell.classList.add("num_bingo");
+
+        }
+      }
+      var container = document.createElement("div");
+      container.className = "tabela-container";
+      container.appendChild(tabela);
+      return container;
+    }
+
+    function gerarTabelas() {
+      var numTabelas = parseInt(document.getElementById("selec_tabela").value);
+      var tabelasContainer = document.getElementById("tabelasContainer");
+      tabelasContainer.innerHTML = ""; // Limpa o conteúdo anterior
+      var matriz = [
+        [sorteia(1, 15), sorteia(16, 30), sorteia(31, 45), sorteia(46, 60), sorteia(61, 75)],
+        [sorteia(1, 15), sorteia(16, 30), sorteia(31, 45), sorteia(46, 60), sorteia(61, 75)],
+        [sorteia(1, 15), sorteia(16, 30), "FREE", sorteia(46, 60), sorteia(61, 75)],
+        [sorteia(1, 15), sorteia(16, 30), sorteia(31, 45), sorteia(46, 60), sorteia(61, 75)],
+        [sorteia(1, 15), sorteia(16, 30), sorteia(31, 45), sorteia(46, 60), sorteia(61, 75)]
+      ];
+      for (let i = 0; i < numTabelas; i++) {
+        var novaTabela = criar_tabela(matriz);
+        tabelasContainer.appendChild(novaTabela);
+      }
+      document.getElementById("button").disabled = true; // Desabilita o botão após gerar as tabelas
+      document.getElementById("selec_tabela").disabled = true; // Desabilita o select após gerar as tabelas
+    }
+
+    document.addEventListener("click", function (event) {
+      if (event.target.classList.contains("num_bingo")) {
+        event.target.classList.toggle("marcado");
+      }
+    });
+
+    document.addEventListener("dblclick", function (event) {
+      if (event.target.classList.contains("num_bingo") && event.target.classList.contains("marcado")) {
+        event.target.classList.remove("marcado");
+      }
+    });
+
+  </script>
+</body>
+
+</html>
